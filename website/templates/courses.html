@@ -1,0 +1,560 @@
+{%  load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Elite Academy </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'website/img/logo/mini_logo.png' %}">
+        <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}"> <!-- Perdorur ne me te shumten e klasave CSS per te funksionuar edhe me pajisje mobile -->
+        <link rel="stylesheet" href="{% static 'website/css/animate.min.css' %}"> <!-- Per animacionet te slideshow -->
+        <link rel="stylesheet" href="{% static 'website/css/slicknav.css' %}"> <!-- Menu per mobile -->
+        <link rel="stylesheet" href="{% static 'website/css/themify-icons.css' %}"> <!-- Per ikonat (te shigjetave) -->
+        <link rel="stylesheet" href="{% static 'website/css/slick.css' %}"> <!-- Per shigjetat -->
+        <link rel="stylesheet" href="{% static 'website/css/style.css' %}"> <!-- CSS kryesore -->
+   </head>
+
+   <body>
+
+
+
+    <header>
+       <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top top-bg d-none d-lg-block">
+                   <div class="container-fluid">
+                       <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left">
+                                    <ul>
+                                        <li><i class="fas fa-map-marker-alt"></i>Lagja 5, Rruga Jahja Ballhysa, Durres</li>
+                                        <li><i class="fas fa-envelope"></i>marianobaci22@gmail.com</li>
+                                    </ul>
+                                </div>
+                                <div class="header-info-right">
+                                    <ul class="header-social">
+                                        <li><a href="https://www.linkedin.com/in/mariano-baci-4b43981a7/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://www.facebook.com/mariano.baci.5" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-1 col-md-1">
+                                <div class="logo">
+                                    <picture>
+                                      <source
+                                        media="(max-width: 465px)"
+                                        srcset="{% static 'website/img/logo/logo_mobile.png' %}">
+                                      <img
+                                        src="{% static 'website/img/logo/logo.png' %}"
+                                        alt="logo">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-8 col-md-8">
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="/home">Home</a></li>
+                                            <li><a href="/courses">Courses</a></li>
+                                            <li><a href="/about">About</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            {% if std == None %}
+                                <div class="col-xl-4 col-lg-3 col-md-3">
+                                    <div class="header-right-btn f-right d-none d-lg-block">
+                                        <a href="/login" class="btn header-btn">Log in</a>
+                                        <a href="/signup" class="btn header-btn">Sign up</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col-xl-4 col-lg-3 col-md-3">
+                                    <div class="header-right-btn f-right d-none d-lg-block">
+                                        {% if user_type == "superuser" %}
+                                            <a href="/all_students_courses" class="btn header-btn">Database</a>
+                                        {% else %}
+                                            <a href="/my_courses" class="btn header-btn">My courses</a>
+                                        {% endif %}
+                                        <a href="/logout" class="btn header-btn">Log out</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+    </header>
+
+
+
+    <main>
+
+        <div class="slider-area ">
+            <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'website/img/slider_images/courses_slider.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Our Courses</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="team-profile team-padding">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <h2>Our Courses</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_graphic.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Graphic & Design</h4>
+                                    <p>€150.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/graphic&design" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_programming.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Programmer</h4>
+                                    <p>€150.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/programmer" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_tour_guide.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Tour guide</h4>
+                                    <p>€150.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/tour_guide" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_travel_agent.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Travel Agent</h4>
+                                    <p>€50.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/travel_agent" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <br>
+                <br>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_receptionist.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Receptionist</h4>
+                                    <p>€150.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/receptionist" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_waiter.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Waiter</h4>
+                                    <p>€150.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/waiter" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_bus_driver.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Bus Driver</h4>
+                                    <p>€50.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/bus_driver" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-profile mb-30">
+                            <div class="single-profile-front">
+                                <div class="profile-img">
+                                    <img src="{% static 'website/img/course&service/course_haccp.jpg' %}" alt="">
+                                </div>
+                                <div class="profile-caption text-center">
+                                    <h4>Haccp</h4>
+                                    <p>€50.00</p>
+                                    <div class="hero__btn">
+                                        <a href="/apply/haccp" class="btn hero-btn">Apply</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+        <div class="services-area section-padding2">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <h2>Our Services</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_waiter.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Waiter<br><br></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_travel_agent.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Travel Agent</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_tour_guide.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Tour Guide<br><br>  </h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_reception.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Receptionist<br><br></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_programmer.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Programmer<br><br></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_haccp.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Haccp<br><br></h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_scale_icon.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Graphic and Design</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-3 col-lg-4 col-md-6">
+                        <div class="single-services text-center mb-30">
+                            <img src="{% static 'website/img/course&service/service_cleaning_personenel.png' %}" height="40">
+                            <br>
+                            <br>
+                            <br>
+                            <div class="services-caption">
+                                <h4>Cleaning Personel</h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="recent-area section-paddingt">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="section-tittle text-center">
+                            <h2>How do we work?</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single-recent-cap mb-30">
+                            <div class="recent-img">
+                                <img src="{% static 'website/img/about/work_1.jpg' %}" alt="">
+                            </div>
+                            <div class="recent-cap">
+                                <span>#1 in-class training</span>
+                                <h5>Begin with fundamental knowledge and guidelines about the profession.</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single-recent-cap mb-30">
+                            <div class="recent-img">
+                                <img src="{% static 'website/img/about/work_2.png' %}" alt="">
+                            </div>
+                            <div class="recent-cap">
+                                <span>#2 practical experience and certification</span>
+                                <h5>Practical exercises and a final exam will improve and test competences acquired during the theoretical training.</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-xl-4 col-lg-4 col-md-6">
+                        <div class="single-recent-cap mb-30">
+                            <div class="recent-img">
+                                <img src="{% static 'website/img/about/work_3.png' %}" alt="">
+                            </div>
+                            <div class="recent-cap">
+                                <span>#3 start working</span>
+                                <h5>Practical exercises and a final exam will improve and test competences acquired during the theoretical training.</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="testimonial-area fix">
+            <div class="container">
+               <div class="row justify-content-center">
+                    <div class="col-xl-9 col-lg-9 col-md-9">
+                        <div class="section-tittle text-center">
+                            <h2>Our Trainers</h2>
+                        </div>
+                        <div class="h1-testimonial-active">
+                            <div class="single-testimonial pt-65">
+                                <div class="testimonial-icon mb-45">
+                                    <img src="{% static 'website/img/team/team_1.png' %}" class="ani-btn " alt="">
+                                </div>
+                                <div class="testimonial-caption text-center">
+                                    <p>You can’t succeed if you just do what others do.
+                                        You have to do what others do, JUST WAY BETTER! </p>
+                                    <div class="rattiong-caption">
+                                        <span>Mariano Baci<span> - Beqir Cela</span> </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="single-testimonial pt-65">
+                                <div class="testimonial-icon mb-45">
+                                    <img src="{% static 'website/img/team/team_2.png' %}"  class="ani-btn" alt="">
+                                </div>
+                                <div class="testimonial-caption text-center">
+                                    <p>The road to success and the road to failure are almost exactly the same </p>
+                                    <div class="rattiong-caption">
+                                        <span>Fatjon Furriku<span> - Beqir Cela</span> </span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+        </div>
+
+    <br>
+    <br>
+    <br>
+
+    </main>
+   <footer>
+       <div class="footer-area footer-padding">
+           <div class="container">
+               <div class="row d-flex justify-content-between">
+                   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                      <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-logo">
+                                <a href="/home"><img src="{% static 'website/img/logo/logo_footer.png' %}" alt=""></a>
+                            </div>
+                            <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p>Became the programmer of the future!</p>
+                               </div>
+                            </div>
+                            <div class="footer-social">
+                                <a href="https://www.facebook.com/mariano.baci.5" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                                <a href="https://www.linkedin.com/in/mariano-baci-4b43981a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="col-xl-2 col-lg-2 col-md-4 col-sm-5">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Menu</h4>
+                               <ul>
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/courses">Courses</a></li>
+                                <li><a href="/about">About</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Account</h4>
+                               <ul>
+                                {% if std == None %}
+                                    <li><a href="/login">Log in</a></li>
+                                    <li><a href="/signup">Sign Up</a></li>
+                                {% else %}
+                                    {% if user_type == "superuser" %}
+                                        <li><a href="/all_students_courses">Database</a></li>
+                                    {% else %}
+                                        <li><a href="/my_courses">My courses</a></li>
+                                    {% endif %}
+                                    <li><a href="/logout">Log Out</a></li>
+                                {% endif %}
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Get in Touch</h4>
+                               <ul>
+                                <li>(+355) 069-324-0247</li>
+                                <li>marianobaci22@gmail.com</li>
+                                <li>Durres, Albania</li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="footer-bottom-area footer-bg">
+           <div class="container">
+               <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by Mariano Baci and Fatjon Furriku</p>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+           </div>
+       </div>
+   </footer>
+
+	
+		<!-- Jquery-->
+		<script src="{% static 'website/js/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'website/js/jquery.slicknav.min.js' %}"></script>
+        <script src="{% static 'website/js/slick.min.js' %}"></script>
+		<!-- Butoni per Scrollup -->
+        <script src="{% static 'website/js/jquery.scrollUp.min.js' %}"></script>
+		<!-- Javascript -->
+        <script src="{% static 'website/js/main.js' %}"></script>
+
+
+        
+    </body>
+</html>

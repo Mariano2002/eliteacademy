@@ -1,0 +1,292 @@
+{%  load static %}
+<!doctype html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>Elite Academy </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+		<link rel="shortcut icon" type="image/x-icon" href="{% static 'website/img/logo/mini_logo.png' %}">
+        <link rel="stylesheet" href="{% static 'website/css/bootstrap.min.css' %}"> <!-- Perdorur ne me te shumten e klasave CSS per te funksionuar edhe me pajisje mobile -->
+        <link rel="stylesheet" href="{% static 'website/css/animate.min.css' %}"> <!-- Per animacionet te slideshow -->
+        <link rel="stylesheet" href="{% static 'website/css/slicknav.css' %}"> <!-- Menu per mobile -->
+        <link rel="stylesheet" href="{% static 'website/css/themify-icons.css' %}"> <!-- Per ikonat (te shigjetave) -->
+        <link rel="stylesheet" href="{% static 'website/css/slick.css' %}"> <!-- Per shigjetat -->
+        <link rel="stylesheet" href="{% static 'website/css/style.css' %}"> <!-- CSS kryesore -->
+   </head>
+
+   <body>
+
+
+    <header>
+       <div class="header-area">
+            <div class="main-header ">
+                <div class="header-top top-bg d-none d-lg-block">
+                   <div class="container-fluid">
+                       <div class="col-xl-12">
+                            <div class="row d-flex justify-content-between align-items-center">
+                                <div class="header-info-left">
+                                    <ul>
+                                        <li><i class="fas fa-map-marker-alt"></i>Lagja 5, Rruga Jahja Ballhysa, Durres</li>
+                                        <li><i class="fas fa-envelope"></i>marianobaci22@gmail.com</li>
+                                    </ul>
+                                </div>
+                                <div class="header-info-right">
+                                    <ul class="header-social">
+                                        <li><a href="https://www.linkedin.com/in/mariano-baci-4b43981a7/" target="_blank"><i class="fab fa-linkedin-in"></i></a></li>
+                                        <li><a href="https://www.facebook.com/mariano.baci.5" target="_blank"><i class="fab fa-facebook-f"></i></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                       </div>
+                   </div>
+                </div>
+               <div class="header-bottom  header-sticky">
+                    <div class="container-fluid">
+                        <div class="row align-items-center">
+                            <div class="col-xl-2 col-lg-1 col-md-1">
+                                <div class="logo">
+                                    <picture>
+                                      <source
+                                        media="(max-width: 465px)"
+                                        srcset="{% static 'website/img/logo/logo_mobile.png' %}">
+                                      <img
+                                        src="{% static 'website/img/logo/logo.png' %}"
+                                        alt="logo">
+                                    </picture>
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-8 col-md-8">
+                                <div class="main-menu f-right d-none d-lg-block">
+                                    <nav>
+                                        <ul id="navigation">
+                                            <li><a href="/home">Home</a></li>
+                                            <li><a href="/courses">Courses</a></li>
+                                            <li><a href="/about">About</a></li>
+                                        </ul>
+                                    </nav>
+                                </div>
+                            </div>
+                            {% if std == None %}
+                                <div class="col-xl-4 col-lg-3 col-md-3">
+                                    <div class="header-right-btn f-right d-none d-lg-block">
+                                        <a href="/login" class="btn header-btn">Log in</a>
+                                        <a href="/signup" class="btn header-btn">Sign up</a>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <div class="col-xl-4 col-lg-3 col-md-3">
+                                    <div class="header-right-btn f-right d-none d-lg-block">
+                                        {% if user_type == "superuser" %}
+                                            <a href="/all_students_courses" class="btn header-btn">Database</a>
+                                        {% else %}
+                                            <a href="/my_courses" class="btn header-btn">My courses</a>
+                                        {% endif %}
+                                        <a href="/logout" class="btn header-btn">Log out</a>
+                                    </div>
+                                </div>
+                            {% endif %}
+                            <div class="col-12">
+                                <div class="mobile_menu d-block d-lg-none"></div>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+            </div>
+       </div>
+    </header>
+
+
+
+    <main>
+
+        <div class="slider-area ">
+            <div class="single-slider slider-height2 d-flex align-items-center" data-background="{% static 'website/img/slider_images/courses_slider.jpg' %}">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="hero-cap text-center">
+                                <h2>Our Courses</h2>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="align-items-center text-center">
+        <form action="{% url 'apply' kursi %}" method="POST" id="form">
+            {% csrf_token %}
+            <div class="select-hour">
+                <input hidden name="kursi" value="{{ kursi }}">
+                <input hidden name="cmimi" value="{{ cmimi }}">
+
+
+                <br>
+                <br>
+                <br>
+                <h4>Zgjidh 2 dite:</h4>
+                <div class="weekDays-selector">
+                  <input type="checkbox" value="E hene" id="weekday-mon" class="weekday"/>
+                  <label for="weekday-mon">E hene</label>
+                  <input type="checkbox" value="E marte" id="weekday-tue" class="weekday"/>
+                  <label for="weekday-tue">E marte</label>
+                  <input type="checkbox" value="E merkure" id="weekday-wed" class="weekday"/>
+                  <label for="weekday-wed">E merkure</label>
+                  <input type="checkbox" value="E enjte" id="weekday-thu" class="weekday"/>
+                  <label for="weekday-thu">E enjte</label>
+                    <br>
+                  <input type="checkbox" value="E premte" id="weekday-fri" class="weekday"/>
+                  <label for="weekday-fri">E premte</label>
+                  <input type="checkbox" value="E shtune" id="weekday-sat" class="weekday"/>
+                  <label for="weekday-sat">E shtune</label>
+                  <input type="checkbox" value="E diele" id="weekday-sun" class="weekday"/>
+                  <label for="weekday-sun">E diele</label>
+                </div>
+                <br>
+                <br>
+                <br>
+                <h4>Zgjidh oren:</h4>
+                <div class="hours-selector">
+                  <input type="checkbox" value="7" id="7" class="hours"/>
+                  <label for="7">7:00</label>
+                  <input type="checkbox" value="8" id="8" class="hours"/>
+                  <label for="8">8:00</label>
+                  <input type="checkbox" value="9" id="9" class="hours"/>
+                  <label for="9">9:00</label>
+                  <input type="checkbox" value="10" id="10" class="hours"/>
+                  <label for="10">10:00</label>
+                    <br>
+                  <input type="checkbox" value="11" id="11" class="hours"/>
+                  <label for="11">11:00</label>
+                  <input type="checkbox" value="12" id="12" class="hours"/>
+                  <label for="12">12:00</label>
+                  <input type="checkbox" value="13" id="13" class="hours"/>
+                  <label for="13">13:00</label>
+                  <input type="checkbox" value="14" id="14" class="hours"/>
+                  <label for="14">14:00</label>
+                    <br>
+                  <input type="checkbox" value="15" id="15" class="hours"/>
+                  <label for="15">15:00</label>
+                  <input type="checkbox" value="16" id="16" class="hours"/>
+                  <label for="16">16:00</label>
+                  <input type="checkbox" value="17" id="17" class="hours"/>
+                  <label for="17">17:00</label>
+                  <input type="checkbox" value="18" id="18" class="hours"/>
+                  <label for="18">18:00</label>
+                </div>
+                <br>
+                <br>
+                <br>
+
+
+
+                <button type="submit" id="submit" class="btn">Submit</button>
+            </div>
+        </form>
+        </div>
+        <br>
+        <br>
+        <br>
+
+    </main>
+   <footer>
+       <div class="footer-area footer-padding">
+           <div class="container">
+               <div class="row d-flex justify-content-between">
+                   <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
+                      <div class="single-footer-caption mb-50">
+                        <div class="single-footer-caption mb-30">
+                            <div class="footer-logo">
+                                <a href="/home"><img src="{% static 'website/img/logo/logo_footer.png' %}" alt=""></a>
+                            </div>
+                            <div class="footer-tittle">
+                                <div class="footer-pera">
+                                    <p>Became the programmer of the future!</p>
+                               </div>
+                            </div>
+                            <div class="footer-social">
+                                <a href="https://www.facebook.com/mariano.baci.5" target="_blank"><i class="fab fa-facebook-square"></i></a>
+                                <a href="https://www.linkedin.com/in/mariano-baci-4b43981a7/" target="_blank"><i class="fab fa-linkedin"></i></a>
+                            </div>
+                        </div>
+                      </div>
+                   </div>
+                   <div class="col-xl-2 col-lg-2 col-md-4 col-sm-5">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Menu</h4>
+                               <ul>
+                                <li><a href="/home">Home</a></li>
+                                <li><a href="/courses">Courses</a></li>
+                                <li><a href="/about">About</a></li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-7">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Account</h4>
+                               <ul>
+                                {% if std == None %}
+                                    <li><a href="/login">Log in</a></li>
+                                    <li><a href="/signup">Sign Up</a></li>
+                                {% else %}
+                                    {% if user_type == "superuser" %}
+                                        <li><a href="/all_students_courses">Database</a></li>
+                                    {% else %}
+                                        <li><a href="/my_courses">My courses</a></li>
+                                    {% endif %}
+                                    <li><a href="/logout">Log Out</a></li>
+                                {% endif %}
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+                   <div class="col-xl-3 col-lg-3 col-md-4 col-sm-5">
+                       <div class="single-footer-caption mb-50">
+                           <div class="footer-tittle">
+                               <h4>Get in Touch</h4>
+                               <ul>
+                                <li>(+355) 069-324-0247</li>
+                                <li>marianobaci22@gmail.com</li>
+                                <li>Durres, Albania</li>
+                               </ul>
+                           </div>
+                       </div>
+                   </div>
+               </div>
+           </div>
+       </div>
+       <div class="footer-bottom-area footer-bg">
+           <div class="container">
+               <div class="footer-border">
+                    <div class="row d-flex align-items-center">
+                        <div class="col-xl-12 ">
+                            <div class="footer-copy-right text-center">
+                                <p>Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This website is made by Mariano Baci and Fatjon Furriku</p>
+                            </div>
+                        </div>
+                    </div>
+               </div>
+           </div>
+       </div>
+   </footer>
+
+
+
+		<!-- Jquery-->
+		<script src="{% static 'website/js/jquery-1.12.4.min.js' %}"></script>
+        <script src="{% static 'website/js/jquery.slicknav.min.js' %}"></script>
+        <script src="{% static 'website/js/slick.min.js' %}"></script>
+		<!-- Butoni per Scrollup -->
+        <script src="{% static 'website/js/jquery.scrollUp.min.js' %}"></script>
+		<!-- Javascript -->
+        <script src="{% static 'website/js/main.js' %}"></script>
+
+
+
+    </body>
+</html>
